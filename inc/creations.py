@@ -63,22 +63,22 @@ class Bloody:
     @property
     def condition(self):
         blood_bal: float = percent((self.blood_vol_max - self.blood_vol_min), self.blood_vol_cur)
+        blood_desc: str = ''
         if blood_bal >= CL.PERFECT:
-            return 'The creature has no blood loss.'
+            blood_desc = 'The creature has no blood loss.'
         elif blood_bal >= CL.SLIGHTLY:
-            return 'Slight blood loss.'
+            blood_desc = 'Slight blood loss.'
         elif blood_bal >= CL.MINOR:
-            return 'Minor blood loss.'
+            blood_desc = 'Minor blood loss.'
         elif blood_bal >= CL.MEDIUM:
-            return 'Medium blood loss.'
+            blood_desc = 'Medium blood loss.'
         elif blood_bal >= CL.MAJOR:
-            return 'Major blood loss.'
+            blood_desc = 'Major blood loss.'
         elif blood_bal >= CL.CRITICAL:
-            return 'Critical blood loss!'
+            blood_desc = 'Critical blood loss!'
         elif blood_bal >= CL.FATAL:
-            return 'Fatal blood loss!'
-        elif blood_bal == CL.EMPTY:
-            return 'The creature is completely drained of blood... huh'
+            blood_desc = 'Fatal blood loss!'
+        return self._desc + "\n" + blood_desc
 
 
 class ObjectDescription(Gender, Solid, Bloody):

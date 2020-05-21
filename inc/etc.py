@@ -10,7 +10,6 @@ class ContainLevel(IntEnum):
     MAJOR: int = 40
     CRITICAL: int = 30
     FATAL: int = 10
-    EMPTY: int = 0
 
 
 class ActionLevel(Enum):
