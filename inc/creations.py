@@ -36,6 +36,7 @@ class Solid:
 @dataclass
 class Bloody:
     _desc: str = ''
+    name: str = 'blood'
     is_bloody: bool = False
     blood_min_per: int = rnd.randrange(5, 70, 1)
     blood_vol_max: float = rnd.uniform(0.1, 1.0)
@@ -57,7 +58,7 @@ class Bloody:
     def blood_loss_death(self, name='creature'):
         if self.is_bloody and self.blood_vol_cur < self.blood_vol_min:
             self.death_reason = True
-            self._desc = 'The {0}, dyed by blood loss'.format(name)
+            self._desc = 'The {0}, dyed by {1} loss'.format(name, self.name)
             return self.death_reason
 
     @property
@@ -65,19 +66,19 @@ class Bloody:
         blood_bal: float = percent((self.blood_vol_max - self.blood_vol_min), self.blood_vol_cur)
         blood_desc: str = ''
         if blood_bal >= CL.PERFECT:
-            blood_desc = 'The creature has no blood loss.'
+            blood_desc = 'The creature has no {0} loss.'.format(self.name)
         elif blood_bal >= CL.SLIGHTLY:
-            blood_desc = 'Slight blood loss.'
+            blood_desc = 'Slight {0} loss.'.format(self.name)
         elif blood_bal >= CL.MINOR:
-            blood_desc = 'Minor blood loss.'
+            blood_desc = 'Minor {0} loss.'.format(self.name)
         elif blood_bal >= CL.MEDIUM:
-            blood_desc = 'Medium blood loss.'
+            blood_desc = 'Medium {0} loss.'.format(self.name)
         elif blood_bal >= CL.MAJOR:
-            blood_desc = 'Major blood loss.'
+            blood_desc = 'Major {0} loss.'.format(self.name)
         elif blood_bal >= CL.CRITICAL:
-            blood_desc = 'Critical blood loss!'
+            blood_desc = 'Critical {0} loss!'.format(self.name)
         elif blood_bal >= CL.FATAL:
-            blood_desc = 'Fatal blood loss!'
+            blood_desc = 'Fatal {0} loss!'.format(self.name)
         return self._desc + "\n" + blood_desc
 
 
